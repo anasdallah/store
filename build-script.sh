@@ -9,4 +9,7 @@ mvn clean install
 echo "Starting Docker containers..."
 docker-compose up --build --force-recreate
 
+echo "Generate Jacoco Report ..."
+mvn jacoco:report
+
 echo "All steps completed successfully."
