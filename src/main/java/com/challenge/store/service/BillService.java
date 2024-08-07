@@ -3,11 +3,11 @@ package com.challenge.store.service;
 import static com.challenge.store.constant.RoleEnum.ROLE_AFFILIATE;
 import static com.challenge.store.constant.RoleEnum.ROLE_CUSTOMER;
 import static com.challenge.store.constant.RoleEnum.ROLE_EMPLOYEE;
-import static java.time.temporal.ChronoUnit.YEARS;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -66,7 +66,7 @@ public class BillService {
         BigDecimal netPayableAmount = netAmountAfterDiscount.subtract(additionalDiscount);
 
         return new BillResponse(totalAmount,
-                                netPayableAmount);
+                                netPayableAmount, userDetails.getId());
     }
 
     public static BigDecimal calculateAdditionalDiscount(BigDecimal billAmount) {
@@ -93,6 +93,6 @@ public class BillService {
      * if the user has been customer for over two years:
      */
     private boolean customerLoyaltyCheck(Instant createdDate) {
-        return createdDate.isBefore(Instant.now().minus(2, YEARS));
+        return createdDate.isBefore(Instant.now().atZone(ZoneOffset.UTC).minusYears(2).toInstant());
     }
 }
