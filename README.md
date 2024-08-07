@@ -103,6 +103,7 @@ Post localhost:8080/bill/calculate
 
 **Note**: There's mongo-express image if you want to see the data in mongo:
 http://localhost:8081/
+admin:pass
 
 
 ## Built With
