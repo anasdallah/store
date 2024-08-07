@@ -1,0 +1,5 @@
+[
+  { "_id": "1", "name": "ROLE_CUSTOMER", "description": "Customer role" },
+  { "_id": "2", "name": "ROLE_EMPLOYEE", "description": "Employee role" },
+  { "_id": "3", "name": "ROLE_AFFILIATE", "description": "Affiliate role" }
+]

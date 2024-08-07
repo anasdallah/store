@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mongo:
+    image: "mongo:latest"
+    container_name: mongodb1
+    restart: always
+    ports:
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb1:27017
+    depends_on:
+      - mongo
+
+  app:
+    build: .
+    container_name: store
+    depends_on:
+      - mongo
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/store
+
+  seed:
+    build: ./mongo-seed
+    depends_on:
+      - mongo

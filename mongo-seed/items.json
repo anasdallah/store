@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "1",
+    "name": "Apple",
+    "price": 0.5,
+    "category": "GROCERY"
+  },
+  {
+    "_id": "2",
+    "name": "Banana",
+    "price": 0.3,
+    "category": "GROCERY"
+  },
+  {
+    "_id": "3",
+    "name": "Laptop",
+    "price": 1500,
+    "category": "OTHERS"
+  },
+  {
+    "_id": "4",
+    "name": "Headphones",
+    "price": 100,
+    "category": "OTHERS"
+  }
+]
