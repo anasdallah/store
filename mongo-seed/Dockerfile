@@ -4,6 +4,7 @@ COPY users.json /users.json
 COPY items.json /items.json
 
 CMD bash -c 'until mongo --host mongo --eval "print(\"waiting for connection\")"; do sleep 5; done && \
+    mongo --host mongo --eval "db = db.getSiblingDB(\"store\"); db.roles.drop(); db.users.drop(); db.items.drop();" && \
     mongoimport --host mongo --db store --collection roles --type json --jsonArray --file /roles.json --verbose && \
     mongoimport --host mongo --db store --collection users --type json --jsonArray --file /users.json --verbose && \
     mongoimport --host mongo --db store --collection items --type json --jsonArray --file /items.json --verbose'

@@ -1,6 +1,5 @@
 package com.challenge.store.security.config;
 
-import com.challenge.store.constant.RoleEnum;
 import com.challenge.store.security.AuthEntryPoint;
 import com.challenge.store.security.jwt.JwtRequestFilter;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ public class SecurityConfigurer {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("bill/**").hasRole("EMPLOYEE")
+                        .requestMatchers("bill/**").hasAnyRole("EMPLOYEE", "CUSTOMER", "AFFILIATE")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -3,22 +3,19 @@ package com.challenge.store.security.model;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.challenge.store.dao.entity.User;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +29,6 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    //TODO use record is better
     public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
@@ -71,17 +67,4 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
-        UserDetailsImpl user = (UserDetailsImpl) obj;
-        return Objects.equals(id, user.id);
-    }
 }

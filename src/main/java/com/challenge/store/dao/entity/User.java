@@ -18,13 +18,9 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class User {
     @MongoId
     private String id;
-    //
-//    @NotBlank
-//    @Size(min = 3, max = 20)
+
     private String username;
-    //
-//    @NotBlank
-//    @Size(min = 8)
+
     private String password;
 
     private Set<Role> roles = new HashSet<>();
